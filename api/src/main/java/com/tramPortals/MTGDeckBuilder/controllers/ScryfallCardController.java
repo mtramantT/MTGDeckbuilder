@@ -50,7 +50,16 @@ public class ScryfallCardController {
 	
 	@GetMapping("/cards/{id}")
 	@Scheduled(fixedDelay = 500)
-	public ResponseCardDTO getCard(@PathVariable int id) {
+	public ResponseCardDTO getCard(@PathVariable String id) throws UnirestException, JsonMappingException, JsonProcessingException, IllegalArgumentException {
+		String baseUrl = "https://api.scryfall.com";
+		String endpoint = "/cards/";
+		HttpResponse<String> response = Unirest.get(baseUrl + endpoint + id)
+				  .asString();
+		if(response.getStatus() == 200) {
+			return objectMapper.treeToValue(
+							objectMapper.readTree(response.getBody()), 
+							ResponseCardDTO.class);
+		}
 		return null;
 	}
 }
