@@ -1,5 +1,6 @@
 package com.tramPortals.MTGDeckBuilder.controllers;
 
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,7 @@ public class ScryfallCardController {
 	}
 	
 	@GetMapping("/cards")
+	@Scheduled(fixedDelay = 500)
 	public ResponseListDTO getAll(
 			@RequestParam(defaultValue = "1") int page, 
 			@RequestParam(defaultValue = "cmc") String order, 
@@ -47,6 +49,7 @@ public class ScryfallCardController {
 	}
 	
 	@GetMapping("/cards/{id}")
+	@Scheduled(fixedDelay = 500)
 	public ResponseCardDTO getCard(@PathVariable int id) {
 		return null;
 	}
