@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import com.tramPortals.MTGDeckBuilder.dto.ResponseList;
+import com.tramPortals.MTGDeckBuilder.dto.ResponseListDTO;
 
 @RestController
 @RequestMapping("/scryfall/cards")
@@ -25,7 +25,7 @@ public class ScryfallCardController {
 	}
 	
 	@GetMapping("/cards")
-	public ResponseList getAll(
+	public ResponseListDTO getAll(
 			@RequestParam(defaultValue = "1") int page, 
 			@RequestParam(defaultValue = "cmc") String order, 
 			@RequestParam(defaultValue = "*") String q) throws UnirestException, JsonMappingException, JsonProcessingException, IllegalArgumentException {
@@ -36,7 +36,7 @@ public class ScryfallCardController {
 		if(response.getStatus() == 200) {
 			return objectMapper.treeToValue(
 							objectMapper.readTree(response.getBody()), 
-							ResponseList.class);
+							ResponseListDTO.class);
 		}
 		else {
 			System.out.println("Error retrieving cards. " + response.getStatusText());

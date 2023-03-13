@@ -3,17 +3,17 @@ package com.tramPortals.MTGDeckBuilder.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResponseList {
+public class ResponseListDTO {
 	String object;
 	int total_cards;
 	boolean has_more;
 	String next_page;
 	
-	public ResponseList() {
+	public ResponseListDTO() {
 		
 	}
 
-	public ResponseList(String object, int total_cards, boolean has_more, String next_page) {
+	public ResponseListDTO(String object, int total_cards, boolean has_more, String next_page) {
 		this.object = object;
 		this.total_cards = total_cards;
 		this.has_more = has_more;
