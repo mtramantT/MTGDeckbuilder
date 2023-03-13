@@ -1,6 +1,7 @@
 package com.tramPortals.MTGDeckBuilder.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import com.tramPortals.MTGDeckBuilder.dto.ResponseCardDTO;
 import com.tramPortals.MTGDeckBuilder.dto.ResponseListDTO;
 
 @RestController
@@ -41,6 +43,11 @@ public class ScryfallCardController {
 		else {
 			System.out.println("Error retrieving cards. " + response.getStatusText());
 		}
+		return null;
+	}
+	
+	@GetMapping("/cards/{id}")
+	public ResponseCardDTO getCard(@PathVariable int id) {
 		return null;
 	}
 }
