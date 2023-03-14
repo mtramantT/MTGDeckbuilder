@@ -10,10 +10,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResponseListDTO {
-	private String object;
-	private int total_cards;
-	private boolean has_more;
-	private String next_page;
-	private ResponseCardDTO[] data;
+public class ResponseImageURIs {
+	private String small;
+	private String normal;
+	private String large;
+	private String png;
 }
