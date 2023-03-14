@@ -1,7 +1,9 @@
 package com.tramPortals.MTGDeckBuilder.controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +41,11 @@ public class ScryfallCardController {
 	@Scheduled(fixedDelay = 500)
 	public ResponseListDTO getAll(
 			@RequestParam(defaultValue = "1") int page,
-			@RequestParam(defaultValue = "cmc") String order, 
+			@RequestParam(required = false) String unique,
+			@RequestParam(required = false, defaultValue = "cmc") String order,
+			@RequestParam(required = false) String dir,
+			@RequestParam(required = false) String format,
+			@RequestParam(required = false) String pretty,
 			@RequestParam(defaultValue = "*") String q,
 			@RequestParam(defaultValue = "0") int offset, 
 			@RequestParam(defaultValue = "25") int limit) throws UnirestException, JsonMappingException, JsonProcessingException, IllegalArgumentException {
@@ -48,11 +54,18 @@ public class ScryfallCardController {
 		int pageOffset = (page - 1) * limit;
 		offset = offset > MAX_OFFSET ? MAX_OFFSET : offset;
 		int apiPage = (offset + pageOffset) / MAX_CARD_PER_CALL + 1;
+		
+		Map<String, Object> nonRequiredParams = new HashMap<>();
+		if(unique != null) nonRequiredParams.put("unique", unique);
+		if(order != null) nonRequiredParams.put("order", order);
+		if(dir != null) nonRequiredParams.put("dir", dir);
+		if(dir != null) nonRequiredParams.put("dir", format);
+		if(dir != null) nonRequiredParams.put("dir", pretty);
 
 		HttpResponse<String> response = Unirest.get(BASE_URL + endpoint)
-				.queryString("order", order)
 				.queryString("page", apiPage)
 				.queryString("q", q)
+				.queryString(nonRequiredParams)
 				.asString();
 		
 		if (response.getStatus() == 200) {
