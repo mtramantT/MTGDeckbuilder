@@ -40,48 +40,31 @@ public class ScryfallCardController {
 	@GetMapping("/cards")
 	@Scheduled(fixedDelay = 500)
 	public ResponseListDTO getAll(
-			@RequestParam(defaultValue = "1") int page,
-			@RequestParam(required = false) String unique,
 			@RequestParam(required = false, defaultValue = "cmc") String order,
+			@RequestParam(required = false) String unique,
 			@RequestParam(required = false) String dir,
 			@RequestParam(required = false) String format,
 			@RequestParam(required = false) String pretty,
-			@RequestParam(defaultValue = "*") String q,
-			@RequestParam(defaultValue = "0") int offset, 
-			@RequestParam(defaultValue = "25") int limit) throws UnirestException, JsonMappingException, JsonProcessingException, IllegalArgumentException {
+			@RequestParam(defaultValue = "1") int page,
+			@RequestParam(defaultValue = "*") String q) throws UnirestException, JsonMappingException, JsonProcessingException, IllegalArgumentException {
 
 		String endpoint = "/cards/search";
-		int pageOffset = (page - 1) * limit;
-		offset = offset > MAX_OFFSET ? MAX_OFFSET : offset;
-		int apiPage = (offset + pageOffset) / MAX_CARD_PER_CALL + 1;
 		
 		Map<String, Object> nonRequiredParams = new HashMap<>();
 		if(unique != null) nonRequiredParams.put("unique", unique);
 		if(order != null) nonRequiredParams.put("order", order);
 		if(dir != null) nonRequiredParams.put("dir", dir);
-		if(dir != null) nonRequiredParams.put("dir", format);
-		if(dir != null) nonRequiredParams.put("dir", pretty);
+		if(dir != null) nonRequiredParams.put("format", format);
+		if(dir != null) nonRequiredParams.put("pretty", pretty);
 
 		HttpResponse<String> response = Unirest.get(BASE_URL + endpoint)
-				.queryString("page", apiPage)
+				.queryString("page", page)
 				.queryString("q", q)
 				.queryString(nonRequiredParams)
 				.asString();
 		
 		if (response.getStatus() == 200) {
-			List<ResponseCardDTO> cards = new ArrayList<>();
-			JsonNode root = objectMapper.readTree(response.getBody());
-		    JsonNode data = root.get("data");
-		    
-		    for (int i = offset % MAX_CARD_PER_CALL; i < data.size() && cards.size() < limit; i++) {
-		        JsonNode cardNode = data.get(i);
-		        ResponseCardDTO card = objectMapper.treeToValue(cardNode, ResponseCardDTO.class);
-		        cards.add(card);
-		    }
-		    
-		    ResponseListDTO responseListDTO = objectMapper.treeToValue(root, ResponseListDTO.class);
-		    responseListDTO.setData(cards);
-			return objectMapper.readValue(response.getBody().toString(), ResponseListDTO.class);
+			return objectMapper.treeToValue(objectMapper.readTree(response.getBody()), ResponseListDTO.class);
 		}
 
 		else {
