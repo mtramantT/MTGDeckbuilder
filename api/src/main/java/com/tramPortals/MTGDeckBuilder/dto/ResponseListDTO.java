@@ -1,5 +1,7 @@
 package com.tramPortals.MTGDeckBuilder.dto;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -15,5 +17,5 @@ public class ResponseListDTO {
 	private int total_cards;
 	private boolean has_more;
 	private String next_page;
-	private ResponseCardDTO[] data;
+	private List<ResponseCardDTO> data;
 }
