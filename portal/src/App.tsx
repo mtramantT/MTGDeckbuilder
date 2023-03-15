@@ -15,16 +15,6 @@ function App() {
     <div>
       MTG DeckBuilder Portal
       <button onClick={() => fetchCall()}>click me</button>
-
-      {/* <Container>
-        <CardViewer />
-        <CardViewer />
-        <CardViewer />
-        <CardViewer />
-        <CardViewer />
-        <CardViewer />
-        <CardViewer />
-      </Container> */}
       <ThemeProvider theme={theme}>
       <Container>
         <Box>Box 1</Box>
