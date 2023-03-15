@@ -4,7 +4,6 @@ import CardViewer from './components/CardViewer/CardViewer';
 import Box from './components/RWD/Box';
 import { theme } from './components/RWD/constants';
 import Container from './components/RWD/Container';
-import styled, { ThemeProvider } from "styled-components";
 
 const fetchCall = () => {
   const id = "85a9d667-5cc0-4a3a-a722-24616993943e?85a9d667-5cc0-4a3a-a722-24616993943e";
@@ -16,7 +15,7 @@ function App() {
     <div>
       MTG DeckBuilder Portal
       <button onClick={() => fetchCall()}>click me</button>
-      <ThemeProvider theme={DefaultTheme}>
+      <ThemeProvider theme={theme}>
       <Container>
         <Box>Box 1</Box>
         <Box>Box 2</Box>
