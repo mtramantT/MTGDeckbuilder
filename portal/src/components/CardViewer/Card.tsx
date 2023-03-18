@@ -6,7 +6,7 @@ interface Props {
 }
 
 const Wrapper = styled.span`
-  margin-right: 5px;
+  /* margin-right: 5px; */
 `
 const Card: React.FC<Props> = (props: Props) => {
   const { imageUri } = props

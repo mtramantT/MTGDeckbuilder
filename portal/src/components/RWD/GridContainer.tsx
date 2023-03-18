@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-export type GridProps = Partial<{ columns: number; growth: string }>
+export type GridProps = Partial<{ columns: number; growth: string, gridGap: string }>
 
 interface Props {
   mobile?: GridProps
@@ -10,29 +10,36 @@ interface Props {
 
 const GridContainer = styled.div<Props>`
   display: grid;
-  grid-template-columns: ${(props) => props.mobile?.growth || '1fr'};
+  grid-template-columns: ${(props) => props.mobile?.growth};
+  grid-gap: ${(props) => props.mobile?.gridGap};
   ${(props) =>
     props.theme.mediaQueries.tablet(
-      `grid-template-columns: repeat(${props.tablet?.columns || 2}, ${
-        props.tablet?.growth || '1fr'
-      })`,
+      `grid-template-columns: repeat(${props.tablet?.columns}, ${
+        props.tablet?.growth
+      });
+      grid-gap: ${props.tablet?.gridGap}`,
     )}
   ${(props) =>
     props.theme.mediaQueries.desktop(
-      `grid-template-columns: repeat(${props.desktop?.columns || 3}, ${
-        props.desktop?.growth || '1fr'
-      })`,
+      `grid-template-columns: repeat(${props.desktop?.columns}, ${
+        props.desktop?.growth
+      });
+      grid-gap: ${props.desktop?.gridGap}
+      `,
     )}
 `
 
-export const getGridProps = (columns?: number, growth?: string): GridProps => {
-  return { columns, growth }
+GridContainer.defaultProps = {
+  mobile: { columns: 1, growth: '1fr', gridGap: '5px' },
+  tablet: { columns: 2, growth: '1fr', gridGap: '5px' },
+  desktop: { columns: 3, growth: '1fr', gridGap: '5px' },
 }
 
-GridContainer.defaultProps = {
-  mobile: { columns: 1, growth: '1fr' },
-  tablet: { columns: 2, growth: '1fr' },
-  desktop: { columns: 3, growth: '1fr' },
+export const getGridProps = (columns: number, growth?: string, gridGap?: string): GridProps => {
+  return { 
+    columns, 
+    growth: growth || '1fr', 
+    gridGap: gridGap || '5px' }
 }
 
 export default GridContainer

@@ -5,7 +5,10 @@ import Card from './Card'
 
 interface Props {}
 
-const Border = styled.div``
+const Border = styled.div`
+    padding: 10px;
+    border: 1px solid black;
+`
 
 const CardViewer: React.FC<Props> = (props: Props) => {
   const [cards, setCards] = useState<string[]>([])
