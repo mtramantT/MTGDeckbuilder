@@ -1,8 +1,6 @@
 package com.tramPortals.MTGDeckBuilder.controllers;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.scheduling.annotation.Scheduled;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
@@ -27,8 +24,6 @@ import com.tramPortals.MTGDeckBuilder.dto.ResponseListDTO;
 public class ScryfallCardController {
 
 	private static final String BASE_URL = "https://api.scryfall.com";
-	private static final int MAX_OFFSET = 150;
-	private static final int MAX_CARD_PER_CALL = 175;
 	
 	ObjectMapper objectMapper = new ObjectMapper();
 
