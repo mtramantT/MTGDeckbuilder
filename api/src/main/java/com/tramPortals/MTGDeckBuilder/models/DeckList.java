@@ -28,7 +28,7 @@ public class DeckList {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "decklist_id")
-  private Integer id;
+  private Long id;
 
   @ManyToOne
   @JoinColumn(name = "user_id")
