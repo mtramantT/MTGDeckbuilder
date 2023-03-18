@@ -4,7 +4,6 @@ import { Card } from '../types'
 import {CardImage} from './sub'
 
 interface Props {
-  imgUri: string;
   card: Card;
 }
 
@@ -27,11 +26,18 @@ const Columns = styled.div`
 `
 
 const CardDetails: React.FC<Props> = (props: Props) => {
-  const { imgUri } = props
+  const { card } = props
   return (
     <Wrapper>
       <CardContainer>Card Container</CardContainer>
-      <TextContainer>Text Container</TextContainer>
+      <TextContainer>
+        <div>{card.name}</div>
+        <div>{card.mana_cost}</div>
+        <div>{card.cmc}</div>
+        <div>{card.oracle_text}</div>
+        <div>{card.name}</div>
+        <div>{card.name}</div>
+      </TextContainer>
     </Wrapper>
   )
 }
