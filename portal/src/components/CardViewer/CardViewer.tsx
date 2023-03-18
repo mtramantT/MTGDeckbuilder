@@ -6,8 +6,9 @@ import Card from './Card'
 interface Props {}
 
 const Border = styled.div`
-    padding: 10px;
-    border: 1px solid black;
+  padding: 10px;
+  border: 1px solid black;
+  background-color: #f1f3f8;
 `
 
 const CardViewer: React.FC<Props> = (props: Props) => {
@@ -29,6 +30,7 @@ const CardViewer: React.FC<Props> = (props: Props) => {
     }
     fetchCall()
   }, [])
+
   return (
     <Border>
       <GridContainer desktop={getGridProps(5)}>
