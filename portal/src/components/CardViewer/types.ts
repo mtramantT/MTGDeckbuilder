@@ -7,6 +7,7 @@ export interface Card {
   power: any
   toughness: any
   image_uris: ImageUris
+  keywords: string[]
 }
 
 export interface ImageUris {

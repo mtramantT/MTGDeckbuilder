@@ -19,4 +19,5 @@ public class ResponseCardDTO {
 	private String power;
 	private String toughness;
 	private ResponseImageURIs image_uris;
+	private String[] keywords;
 }

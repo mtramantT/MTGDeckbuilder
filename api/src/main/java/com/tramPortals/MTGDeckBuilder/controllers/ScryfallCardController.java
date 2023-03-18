@@ -80,7 +80,8 @@ public class ScryfallCardController {
 		String endpoint = "/cards/";
 		HttpResponse<String> response = Unirest.get(BASE_URL + endpoint + id).asString();
 		if (response.getStatus() == 200) {
-			return objectMapper.readValue(response.getBody(), ResponseCardDTO.class);
+			ResponseCardDTO temp = objectMapper.readValue(response.getBody(), ResponseCardDTO.class);
+			return temp;
 		}
 		return null;
 	}
