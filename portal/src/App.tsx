@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import AppBoundary from './AppBoundary'
 import CardDetails from './components/CardViewer/CardDetails/CardDetails'
 import CardViewer from './components/CardViewer/CardViewer'
+import { Card } from './components/CardViewer/types'
 import Box from './components/RWD/Box'
 import { theme } from './components/RWD/constants'
 import Container from './components/RWD/Container'
@@ -26,12 +27,28 @@ const sampleCard = {
   power: null,
   toughness: null,
   image_uris: {
-      small: 'https://cards.scryfall.io/small/front/8/5/85a9d667-5cc0-4a3a-a722-24616993943e.jpg?1628380188',
-      normal: 'https://cards.scryfall.io/normal/front/8/5/85a9d667-5cc0-4a3a-a722-24616993943e.jpg?1628380188',
-  }
+    small: 'https://cards.scryfall.io/small/front/8/5/85a9d667-5cc0-4a3a-a722-24616993943e.jpg?1628380188',
+    normal: 'https://cards.scryfall.io/normal/front/8/5/85a9d667-5cc0-4a3a-a722-24616993943e.jpg?1628380188',
+  },
+  keywords: ['']
 }
-
+// http://localhost:8080/scryfall/cards/cards
 function App() {
+  const [cards, setCards] = useState<Card>();
+  useEffect(() => {
+    const fetchCall = () => {
+      fetch('http://localhost:8080/scryfall/cards/cards/9dacef18-5c0d-4c99-8273-1f9c896552bf')
+        .then((response) => response.text())
+        .then((text) => {
+          const data = JSON.parse(text)
+          setCards(data)
+        })
+    }
+    fetchCall()
+  }, [])
+  useEffect(() => {
+    console.log(cards)
+  }, [cards])
   return (
     <div>
       MTG DeckBuilder Portal
@@ -44,7 +61,7 @@ function App() {
           <div>
             {/* <CardViewer /> */}
             <div>
-              <CardDetails card={sampleCard}/>
+              <CardDetails card={cards} />
             </div>
           </div>
         </AppBoundary>

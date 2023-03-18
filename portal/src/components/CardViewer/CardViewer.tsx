@@ -3,14 +3,13 @@ import styled from 'styled-components'
 import GridContainer, { getGridProps } from '../RWD/GridContainer'
 import Card from './Card'
 
-interface Props {}
+interface Props { }
 
 const Border = styled.div`
   padding: 10px;
   border: 1px solid black;
   background-color: #f1f3f8;
 `
-
 const CardViewer: React.FC<Props> = (props: Props) => {
   const [cards, setCards] = useState<string[]>([])
   useEffect(() => {
