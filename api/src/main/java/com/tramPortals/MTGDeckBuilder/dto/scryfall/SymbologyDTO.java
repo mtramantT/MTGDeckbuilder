@@ -1,4 +1,4 @@
-package com.tramPortals.MTGDeckBuilder.dto;
+package com.tramPortals.MTGDeckBuilder.dto.scryfall;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -7,12 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResponseImageURIs {
-	private String small;
-	private String normal;
-	private String large;
-	private String png;
+public class SymbologyDTO {
+
+	private String symbol; 
+	private String svg_uri;
+	
 }

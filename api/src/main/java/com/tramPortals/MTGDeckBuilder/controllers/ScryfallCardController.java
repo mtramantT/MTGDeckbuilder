@@ -11,13 +11,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import com.tramPortals.MTGDeckBuilder.dto.ResponseCardDTO;
 import com.tramPortals.MTGDeckBuilder.dto.ResponseListDTO;
+import com.tramPortals.MTGDeckBuilder.dto.scryfall.ResponseCardDTO;
+import com.tramPortals.MTGDeckBuilder.dto.scryfall.ResponseWrapper;
+import com.tramPortals.MTGDeckBuilder.dto.scryfall.SymbologyDTO;
 
 @RestController
 @RequestMapping("/scryfall/cards")
@@ -34,7 +37,7 @@ public class ScryfallCardController {
 
 	@GetMapping("/cards")
 	@Scheduled(fixedDelay = 500)
-	public ResponseListDTO getAll(
+	public ResponseWrapper<ResponseCardDTO> getAll(
 			@RequestParam(required = false, defaultValue = "cmc") String order,
 			@RequestParam(required = false) String unique,
 			@RequestParam(required = false) String dir,
@@ -59,7 +62,7 @@ public class ScryfallCardController {
 				.asString();
 		
 		if (response.getStatus() == 200) {
-			return objectMapper.treeToValue(objectMapper.readTree(response.getBody()), ResponseListDTO.class);
+			return objectMapper.readValue(response.getBody(), new TypeReference<ResponseWrapper<ResponseCardDTO>>(){});
 		}
 
 		else {

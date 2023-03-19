@@ -1,4 +1,4 @@
-package com.tramPortals.MTGDeckBuilder.dto;
+package com.tramPortals.MTGDeckBuilder.dto.scryfall;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

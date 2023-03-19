@@ -12,8 +12,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import com.tramPortals.MTGDeckBuilder.dto.ResponseWrapper;
-import com.tramPortals.MTGDeckBuilder.dto.SymbologyDTO;
+import com.tramPortals.MTGDeckBuilder.dto.scryfall.ResponseWrapper;
+import com.tramPortals.MTGDeckBuilder.dto.scryfall.SymbologyDTO;
 
 @RestController
 @RequestMapping("/scryfall/symbolology")
