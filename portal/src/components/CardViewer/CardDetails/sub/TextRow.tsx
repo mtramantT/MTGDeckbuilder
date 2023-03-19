@@ -6,7 +6,6 @@ const TextRow = styled.div`
   padding: 5px;
   /* border: solid black #3c3c3c; */
   margin-bottom: 10px;
-  width: 350px;
 `
 
 export default TextRow
