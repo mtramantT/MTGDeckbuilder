@@ -1,9 +1,9 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import { CardSymbols } from '../types'
 
 const CardSymbologyContext = createContext([] as CardSymbols)
 
-const useCardSymbology = (/* arguments here */) => {
+const useCardSymbology = () => {
   const [symbols, setSymbols] = useState<CardSymbols>([] as CardSymbols)
 
   const fetchCall = () => {
