@@ -1,34 +1,27 @@
-import { useContext, useEffect, useState } from 'react'
-import CardSymbologyContext from '../context/CardSymbologyContext'
+import { createContext, useContext, useEffect, useState } from 'react'
 import { CardSymbols } from '../types'
 
-// should i also add the context here?
-
-const defaultState = [] as CardSymbols
+const CardSymbologyContext = createContext([] as CardSymbols)
 
 const useCardSymbology = (/* arguments here */) => {
-  const symbolContext = useContext(CardSymbologyContext)
+  const [symbols, setSymbols] = useState<CardSymbols>([] as CardSymbols)
 
-  // Uncomment below if you need to update when list is empty.
-  const [symbols, setSymbols] = useState<CardSymbols>(symbolContext)
-  useEffect(
-    () => {
-      const fetchCall = () => {
-        fetch('http://localhost:8080/scryfall/symbolology/symbols')
-          .then((response) => response.text())
-          .then((text) => {
-            const data = JSON.parse(text)
-            setSymbols(data)
-          })
-      }
+  const fetchCall = () => {
+    fetch('http://localhost:8080/scryfall/symbolology/symbols')
+      .then((response) => response.text())
+      .then((text) => {
+        const data = JSON.parse(text)
+        setSymbols(data)
+      })
+  }
+
+  useEffect(() => {
+    if (!symbols || symbols.length === 0) {
       fetchCall()
-    },
-    [
-      /* variables to watch for changes here */
-    ],
-  )
+    }
+  }, [])
 
-  return { symbols, setSymbols }
+  return { CardSymbologyContext, symbols }
 }
 
 export default useCardSymbology
