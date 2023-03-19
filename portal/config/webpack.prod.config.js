@@ -1,9 +1,13 @@
+const webpack = require("webpack");
 const { merge } = require("webpack-merge");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCssAssetsPlugin  = require("optimize-css-assets-webpack-plugin");
 
 const commonConfig = require("./webpack.config.js");
 
-const devConfig = merge(commonConfig, {
+const API_URL = 'localhost:8080/'
+
+const prodConfigs = merge(commonConfig, {
   mode: "production",
   module: {
     rules: [
@@ -13,12 +17,16 @@ const devConfig = merge(commonConfig, {
       }
     ]
   },
+  optimization: {
+    minimizer: [new OptimizeCssAssetsPlugin()]
+  },
   plugins: [
     new MiniCssExtractPlugin({
       filename: "[name].[contenthash].css",
       chunkFilename: "[id].[contenthash].css"
-    })
+    }),
+    new webpack.EnvironmentPlugin({ DeckBuilder_BASE_URL: API_URL }),
   ]
 });
 
-module.exports = devConfig;
+module.exports = prodConfigs;

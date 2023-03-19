@@ -23,18 +23,21 @@ const sampleCard = {
   mana_cost: '{4}',
   cmc: 4.0,
   type_line: 'Artifact',
-  oracle_text: 'At the beginning of your end step, draw a card if your life total is greater than your starting life total. Otherwise, you gain 2 life.',
+  oracle_text:
+    'At the beginning of your end step, draw a card if your life total is greater than your starting life total. Otherwise, you gain 2 life.',
   power: null,
   toughness: null,
   image_uris: {
-    small: 'https://cards.scryfall.io/small/front/8/5/85a9d667-5cc0-4a3a-a722-24616993943e.jpg?1628380188',
-    normal: 'https://cards.scryfall.io/normal/front/8/5/85a9d667-5cc0-4a3a-a722-24616993943e.jpg?1628380188',
+    small:
+      'https://cards.scryfall.io/small/front/8/5/85a9d667-5cc0-4a3a-a722-24616993943e.jpg?1628380188',
+    normal:
+      'https://cards.scryfall.io/normal/front/8/5/85a9d667-5cc0-4a3a-a722-24616993943e.jpg?1628380188',
   },
-  keywords: ['']
+  keywords: [''],
 }
 // http://localhost:8080/scryfall/cards/cards
 function App() {
-  const [cards, setCards] = useState<Card>();
+  const [cards, setCards] = useState<Card>()
   useEffect(() => {
     const fetchCall = () => {
       fetch('http://localhost:8080/scryfall/cards/cards/9dacef18-5c0d-4c99-8273-1f9c896552bf')
@@ -59,10 +62,10 @@ function App() {
       </Container> */}
         <AppBoundary>
           <div>
-            {/* <CardViewer /> */}
-            <div>
+            <CardViewer />
+            {/* <div>
               <CardDetails card={cards} />
-            </div>
+            </div> */}
           </div>
         </AppBoundary>
       </ThemeProvider>

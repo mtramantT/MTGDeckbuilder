@@ -5,9 +5,9 @@ module.exports = {
   entry: './src/Index.tsx',
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: "[name].[hash].js",
-    chunkFilename: "[name].[chunkhash].js",
-    assetModuleFilename: "images/[hash][ext][query]"
+    filename: "[name].[contenthash].js",
+    chunkFilename: "[name].[contenthash].js",
+    assetModuleFilename: "images/[contenthash][ext][query]"
   },
   module: {
     rules: [
