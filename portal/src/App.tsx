@@ -1,86 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { ThemeProvider } from 'styled-components'
-import AppBoundary from './AppBoundary'
 import AppContainer from './AppWrappers/AppContainer'
 import mediaQueries from './AppWrappers/Media'
 import Nav from './AppWrappers/UI/Nav'
-import CardDetails from './components/CardViewer/CardDetails/CardDetails'
-import CardViewer from './components/CardViewer/CardViewer'
-import { Card } from './components/CardViewer/types'
-import Box from './components/RWD/Box'
-import { theme } from './components/RWD/constants'
-import Container from './components/RWD/Container'
-
-// Const fetchCall = () => {
-//   Const id = "85a9d667-5cc0-4a3a-a722-24616993943e?85a9d667-5cc0-4a3a-a722-24616993943e";
-//   fetch(`http://localhost:8080/scryfall/cards/cards`).then((response) => response.text()).then((body) => console.log(body))
-// }
 
 const tempTheme = { mediaQueries }
 
-const tempUri =
-  'https://cards.scryfall.io/normal/front/a/4/a4da49b6-69eb-4dea-b52e-26dd69e05d0c.jpg?1573512468'
-const tempUri2 =
-  'https://cards.scryfall.io/small/front/a/4/a4da49b6-69eb-4dea-b52e-26dd69e05d0c.jpg?1573512468'
-
-const sampleCard = {
-  name: 'Cosmos Elixir',
-  mana_cost: '{4}',
-  cmc: 4.0,
-  type_line: 'Artifact',
-  oracle_text:
-    'At the beginning of your end step, draw a card if your life total is greater than your starting life total. Otherwise, you gain 2 life.',
-  power: null,
-  toughness: null,
-  image_uris: {
-    small:
-      'https://cards.scryfall.io/small/front/8/5/85a9d667-5cc0-4a3a-a722-24616993943e.jpg?1628380188',
-    normal:
-      'https://cards.scryfall.io/normal/front/8/5/85a9d667-5cc0-4a3a-a722-24616993943e.jpg?1628380188',
-  },
-  keywords: [''],
-}
-// http://localhost:8080/scryfall/cards/cards
 function App() {
-  const [cards, setCards] = useState<Card>()
-  useEffect(() => {
-    const fetchCall = () => {
-      fetch('http://localhost:8080/scryfall/cards/cards/9dacef18-5c0d-4c99-8273-1f9c896552bf')
-        .then((response) => response.text())
-        .then((text) => {
-          const data = JSON.parse(text)
-          setCards(data)
-        })
-    }
-    fetchCall()
-  }, [])
-  useEffect(() => {
-    console.log(cards)
-  }, [cards])
   return (
     <ThemeProvider theme={tempTheme}>
-      {/* <AppBoundary>
-        <div>
-          <h1>TramPortals - MTG DeckBuilder</h1>
-        </div>
-        <div>
-          <CardViewer />
-          <div>
-              <CardDetails card={cards} />
-            </div>
-        </div>
-      </AppBoundary> */}
       <AppContainer>
         <div>
           <Nav>
             <div>T-Portal Logo</div>
           </Nav>
-        </div>
-        <div>
-          {/* <CardViewer /> */}
-          {/* <div>
-              <CardDetails card={cards} />
-            </div> */}
         </div>
       </AppContainer>
     </ThemeProvider>
