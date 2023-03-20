@@ -75,7 +75,6 @@ function App() {
           <Nav>
             <div>T-Portal Logo</div>
           </Nav>
-          <h1>TramPortals - MTG DeckBuilder</h1>
         </div>
         <div>
           {/* <CardViewer /> */}
