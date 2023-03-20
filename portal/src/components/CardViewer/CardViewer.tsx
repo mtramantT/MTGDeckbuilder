@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import GridContainer, { getGridProps } from '../RWD/GridContainer'
+import { GridContainer } from '../../AppWrappers/UI'
+// import GridContainer, { getGridProps } from '../RWD/GridContainer'
 import Card from './Card'
 
-interface Props { }
+interface Props {}
 
 const Border = styled.div`
   padding: 10px;
@@ -32,7 +33,12 @@ const CardViewer: React.FC<Props> = (props: Props) => {
 
   return (
     <Border>
-      <GridContainer desktop={getGridProps(5)}>
+      {/* <GridContainer desktop={getGridProps(5)}>
+        {cards.map((card) => (
+          <Card imageUri={card} />
+        ))}
+      </GridContainer> */}
+      <GridContainer>
         {cards.map((card) => (
           <Card imageUri={card} />
         ))}

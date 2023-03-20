@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import AppBoundary from './AppBoundary'
+import AppContainer from './AppWrappers/AppContainer'
+import mediaQueries from './AppWrappers/Media'
+import Nav from './AppWrappers/UI/Nav'
 import CardDetails from './components/CardViewer/CardDetails/CardDetails'
 import CardViewer from './components/CardViewer/CardViewer'
 import { Card } from './components/CardViewer/types'
@@ -12,6 +15,8 @@ import Container from './components/RWD/Container'
 //   Const id = "85a9d667-5cc0-4a3a-a722-24616993943e?85a9d667-5cc0-4a3a-a722-24616993943e";
 //   fetch(`http://localhost:8080/scryfall/cards/cards`).then((response) => response.text()).then((body) => console.log(body))
 // }
+
+const tempTheme = { mediaQueries }
 
 const tempUri =
   'https://cards.scryfall.io/normal/front/a/4/a4da49b6-69eb-4dea-b52e-26dd69e05d0c.jpg?1573512468'
@@ -53,23 +58,33 @@ function App() {
     console.log(cards)
   }, [cards])
   return (
-    <div>
-      MTG DeckBuilder Portal
-      {/* <button onClick={() => fetchCall()}>click me</button> */}
-      <ThemeProvider theme={theme}>
-        {/* <Container>
-        <Box>Box 1</Box>
-      </Container> */}
-        <AppBoundary>
+    <ThemeProvider theme={tempTheme}>
+      {/* <AppBoundary>
+        <div>
+          <h1>TramPortals - MTG DeckBuilder</h1>
+        </div>
+        <div>
+          <CardViewer />
           <div>
-            <CardViewer />
-            {/* <div>
+              <CardDetails card={cards} />
+            </div>
+        </div>
+      </AppBoundary> */}
+      <AppContainer>
+        <div>
+          <Nav>
+            <div>T-Portal Logo</div>
+          </Nav>
+          <h1>TramPortals - MTG DeckBuilder</h1>
+        </div>
+        <div>
+          {/* <CardViewer /> */}
+          {/* <div>
               <CardDetails card={cards} />
             </div> */}
-          </div>
-        </AppBoundary>
-      </ThemeProvider>
-    </div>
+        </div>
+      </AppContainer>
+    </ThemeProvider>
   )
 }
 
