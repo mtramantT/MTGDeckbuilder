@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import styled, { createGlobalStyle, css, ThemeProvider } from 'styled-components'
-import theme from '../theme/theme'
+import theme from '../theme'
 
 interface Props {
   children: ReactNode

@@ -1,11 +1,6 @@
 import React from 'react'
-import { ThemeProvider } from 'styled-components'
-import ThemeBoundary from './AppBoundaries/ThemeBoundary'
-import AppContainer from './AppWrappers/AppContainer'
-import mediaQueries from './AppWrappers/Media'
-import Nav from './AppWrappers/UI/Nav'
-
-const tempTheme = { mediaQueries }
+import { ThemeBoundary } from './AppBoundaries'
+import AppContainer from './UI/AppContainer'
 
 function App() {
   return (
@@ -16,7 +11,9 @@ function App() {
     //     </Nav>
     //   </div>
     // </ThemeProvider>
-    <ThemeBoundary>TESTING</ThemeBoundary>
+    <ThemeBoundary>
+      <AppContainer>TESTING</AppContainer>
+    </ThemeBoundary>
   )
 }
 

@@ -1,1 +1,1 @@
-export { default as MediaContainer } from './MediaContainer';
+export { default as AppContainer } from './AppContainer';

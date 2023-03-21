@@ -1,27 +1,61 @@
-export interface AppMedia {
-  mobile: (style: TemplateStringsArray) => string;
-  tablet: (style: TemplateStringsArray) => string;
-  desktop: (style: TemplateStringsArray) => string;
-  wideScreen: (style: TemplateStringsArray) => string;
+export interface BreakPoint {
+    min: (string: TemplateStringsArray) => string;
+    max: (string: TemplateStringsArray) => string;
+}
+export interface Media {
+    mobile: BreakPoint;
+    tablet: BreakPoint;
+    desktop: BreakPoint;
+    wideScreen: BreakPoint;
+    min: (breakpoint: string, styles: TemplateStringsArray) => string;
+    max: (breakpoint: string, styles: TemplateStringsArray) => string;
+    custom: (modifier: MediaModifier, mediaType: string, expression: string, styles: TemplateStringsArray) => string;
 }
 
-const breakpoints = {
-    sm: '400px', // Mobile
-    md: '600px', // Tablet
-    lg: '960px', // Desktop 
-    xlg: '1280px', // Widescreen
-}
+type MediaModifier = 'not' | 'only' | undefined;
   
-export const applyMediaStyle = (breakpoint: string, styles: TemplateStringsArray) => `
-    @media only screen and (min-width: ${breakpoint}) {
-        ${styles}
-    }
+// Helper functions (In-File)
+const applyMediaStyle = (selector: string, breakpoint: string, styles: TemplateStringsArray) => `
+@media only screen and (${selector}: ${breakpoint}) {
+    ${styles}
+}
 `
+const min = (breakpoint: string) => (styles: TemplateStringsArray) => applyMinMedia(breakpoint, styles);
+const max = (breakpoint: string) => (styles: TemplateStringsArray) => applyMaxMedia(breakpoint, styles);
 
-const mobile = (style: TemplateStringsArray) => applyMediaStyle(breakpoints.sm, style);
-const tablet = (style: TemplateStringsArray) => applyMediaStyle(breakpoints.md, style);
-const desktop = (style: TemplateStringsArray) => applyMediaStyle(breakpoints.lg, style);
-const wideScreen = (style: TemplateStringsArray) => applyMediaStyle(breakpoints.xlg, style);
+// Help Functions (Export)
+const applyMinMedia = (breakpoint: string, styles: TemplateStringsArray) => applyMediaStyle('min-width', breakpoint, styles)
+const applyMaxMedia = (breakpoint: string, styles: TemplateStringsArray) => applyMediaStyle('max-width', breakpoint, styles);
 
-const media: AppMedia = {mobile, tablet, desktop, wideScreen}
+const applyCustomMedia = (modifier: MediaModifier, mediaType: string, expression: string, styles: TemplateStringsArray) => {
+    return `
+        @media ${modifier} ${mediaType} and ${expression} {
+            ${styles}
+        }
+    `
+}
+
+// Media Object
+const media: Media = { 
+    mobile: {
+        min: min('360px'),
+        max: max('480px')
+    },
+    tablet: {
+        min: min('480px'),
+        max: max('600px')
+    },
+    desktop: {
+        min: min('600px'),
+        max: max('1080px'),
+    },
+    wideScreen: {
+        min: min('1080px'),
+        max: max('1920px')
+    },
+    min: applyMinMedia,
+    max: applyMaxMedia,
+    custom: applyCustomMedia
+ };
+
 export default media;
