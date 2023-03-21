@@ -7,7 +7,7 @@ interface Props {
 
 const Container = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-flow: column nowrap;
   min-height: 100vh;
   padding: 0 16px;
 

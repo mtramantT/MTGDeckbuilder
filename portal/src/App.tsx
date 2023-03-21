@@ -10,11 +10,9 @@ function App() {
   return (
     <ThemeProvider theme={tempTheme}>
       <AppContainer>
-        <div>
-          <Nav>
-            <div>T-Portal Logo</div>
-          </Nav>
-        </div>
+        <Nav>
+          <div>T-Portal Logo</div>
+        </Nav>
       </AppContainer>
     </ThemeProvider>
   )

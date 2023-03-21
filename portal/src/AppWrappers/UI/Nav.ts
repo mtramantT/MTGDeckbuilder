@@ -7,7 +7,7 @@ const Nav = styled.nav`
     align-items: center;
     background-color: #0B8BA5;
     color: #EFEFEF;
-    padding: 1px 10px;
+    padding: 0 8px;
 `;
 
 export default Nav;
