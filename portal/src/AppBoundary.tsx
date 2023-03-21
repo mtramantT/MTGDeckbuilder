@@ -21,4 +21,4 @@ const AppBoundary = styled.div`
   `}
 `
 
-export default AppBoundary
+export default AppBoundary;
