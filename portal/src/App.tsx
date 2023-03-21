@@ -1,6 +1,6 @@
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
-import ThemeBoundary from './AppBoundaries/themeBoundary'
+import ThemeBoundary from './AppBoundaries/ThemeBoundary'
 import AppContainer from './AppWrappers/AppContainer'
 import mediaQueries from './AppWrappers/Media'
 import Nav from './AppWrappers/UI/Nav'
@@ -16,8 +16,8 @@ function App() {
     //     </Nav>
     //   </div>
     // </ThemeProvider>
-    <ThemeBoundary />
+    <ThemeBoundary>TESTING</ThemeBoundary>
   )
 }
 
-export default App;
+export default App

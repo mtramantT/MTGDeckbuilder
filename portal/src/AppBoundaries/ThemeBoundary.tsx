@@ -1,25 +1,31 @@
-import React from 'react';
-import styled, { css, ThemeProvider } from 'styled-components';
-import { theme } from '../theme';
+import React, { ReactNode } from 'react'
+import styled, { createGlobalStyle, css, ThemeProvider } from 'styled-components'
+import theme from '../theme/theme'
 
-interface Props { }
-
-const Wrapper = styled.div`
-    min-height: 100vh;
-    ${({ theme }) =>
-        css`
-            background-color: ${theme.colors.primary};
-            color: ${(props) => props.theme.colors.font};
-        `
-    }
-`;
-
-const ThemeBoundary: React.FC<Props> = (props: Props) => {
-    return (
-        <ThemeProvider theme={theme}>
-            <Wrapper>Test</Wrapper>
-        </ThemeProvider>
-    );
+interface Props {
+  children: ReactNode
 }
 
-export default ThemeBoundary;
+const GlobalStyleWrapper = createGlobalStyle`
+  body {
+    ${({ theme }) => css`
+      background-color: ${theme.colors.primary};
+      color: ${theme.colors.font};
+    `}
+  }
+`
+const Wrapper = styled.div`
+  min-height: 100vh;
+`
+
+const ThemeBoundary: React.FC<Props> = (props: Props) => {
+  const { children } = props
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyleWrapper />
+      <Wrapper>{children}</Wrapper>
+    </ThemeProvider>
+  )
+}
+
+export default ThemeBoundary

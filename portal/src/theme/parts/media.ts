@@ -1,3 +1,10 @@
+export interface AppMedia {
+  mobile: (style: TemplateStringsArray) => string;
+  tablet: (style: TemplateStringsArray) => string;
+  desktop: (style: TemplateStringsArray) => string;
+  wideScreen: (style: TemplateStringsArray) => string;
+}
+
 const breakpoints = {
     sm: '400px', // Mobile
     md: '600px', // Tablet
@@ -16,5 +23,5 @@ const tablet = (style: TemplateStringsArray) => applyMediaStyle(breakpoints.md, 
 const desktop = (style: TemplateStringsArray) => applyMediaStyle(breakpoints.lg, style);
 const wideScreen = (style: TemplateStringsArray) => applyMediaStyle(breakpoints.xlg, style);
 
-const mediaQueries = {mobile, tablet, desktop, wideScreen}
-export default mediaQueries;
+const media: AppMedia = {mobile, tablet, desktop, wideScreen}
+export default media;

@@ -1,7 +1,11 @@
-import colors from "./colors";
-import mediaQueries from "./mediaQueries";
+import colors, { AppColors } from "./parts/colors";
+import media, { AppMedia } from "./parts/media";
 
-const theme = { colors, mediaQueries }
+export interface AppTheme {
+    colors: AppColors;
+    media: AppMedia;
+}
 
-export type AppTheme = typeof theme;
+const theme: AppTheme = { colors, media }
+
 export default theme;
