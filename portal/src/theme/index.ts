@@ -1,5 +1,6 @@
-import theme from './theme'
-export { Colors } from './parts/colors';
-export { Media } from './parts/media';
-export { Theme } from './theme';
-export { theme as default }
+import theme from './theme';
+
+export type {Colors} from './parts/colors';
+export type {Media} from './parts/media';
+export type {Theme} from './theme';
+export default theme;
