@@ -1,21 +1,13 @@
 import React from 'react'
+import { BrowserRouter, Routes } from 'react-router-dom'
 import { ThemeBoundary } from './AppBoundaries'
+import RouterBoundary from './AppBoundaries/RouterBoundary'
 import { Nav } from './UI'
-import AppContainer from './UI/AppContainer'
 
 function App() {
   return (
-    // <ThemeProvider theme={tempTheme}>
-    //   <div style={{ backgroundColor: '#d9e8ff', minHeight: '100vh' }}>
-    //     <Nav>
-    //       <div>T-Portal Logo</div>
-    //     </Nav>
-    //   </div>
-    // </ThemeProvider>
     <ThemeBoundary>
-      <Nav>
-        <div>Portal-Logo</div>
-      </Nav>
+      <RouterBoundary />
     </ThemeBoundary>
   )
 }

@@ -5,6 +5,7 @@ type Props = {
 };
 
 const Nav = styled.nav<Props>`
+    display: flex;
     background-color: ${(props) => props.theme.colors.secondary};
     padding: 0.66rem 0.5rem;
 `;
