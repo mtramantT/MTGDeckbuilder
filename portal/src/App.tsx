@@ -1,5 +1,6 @@
 import React from 'react'
 import { ThemeBoundary } from './AppBoundaries'
+import { Nav } from './UI'
 import AppContainer from './UI/AppContainer'
 
 function App() {
@@ -12,7 +13,9 @@ function App() {
     //   </div>
     // </ThemeProvider>
     <ThemeBoundary>
-      <AppContainer>TESTING</AppContainer>
+      <Nav>
+        <div>Portal-Logo</div>
+      </Nav>
     </ThemeBoundary>
   )
 }

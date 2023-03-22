@@ -8,6 +8,8 @@ interface Props {
 
 const GlobalStyleWrapper = createGlobalStyle`
   body {
+    box-sizing: border-box;
+    margin: 0;
     ${({ theme }) => css`
       background-color: ${theme.colors.primary};
       color: ${theme.colors.font};
