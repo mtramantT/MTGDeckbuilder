@@ -1,8 +1,8 @@
-import React from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import styled from 'styled-components'
-import { Nav } from '../UI'
-import Layout from '../UI/layouts/Layout'
+import React from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import styled from 'styled-components';
+import { ErrorPage, Nav } from '../UI';
+import Layout from '../UI/Layouts/Layout';
 
 interface Props {}
 
@@ -23,12 +23,13 @@ const router = createBrowserRouter([
         }}
       </Layout>
     ),
+    errorElement: <ErrorPage />,
   },
-])
+]);
 
 const RouterBoundary: React.FC<Props> = (props: Props) => {
-  const {} = props
-  return <RouterProvider router={router} />
-}
+  const {} = props;
+  return <RouterProvider router={router} />;
+};
 
-export default RouterBoundary
+export default RouterBoundary;
