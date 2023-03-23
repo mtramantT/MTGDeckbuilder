@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import { ErrorPage, Nav } from '../UI';
 import Layout from '../UI/Layouts/Layout';
 import NavBar from '../UI/Layouts/NavBar';
@@ -18,18 +18,25 @@ const router = createBrowserRouter([
             <NavBar>
               {{
                 logo: <div>Portal-Logo</div>,
-                items: [
-                  <div style={{ marginLeft: '16px', fontWeight: 'bold' }}>Decks</div>,
-                  <div style={{ marginLeft: '16px', fontWeight: 'bold' }}>Viewer</div>,
-                ],
+                items: ['Decks', 'Viewer'],
               }}
             </NavBar>
           ),
-          body: 'This should be the body',
+          body: (
+            <div>
+              <Outlet />
+            </div>
+          ),
         }}
       </Layout>
     ),
     errorElement: <ErrorPage />,
+    children: [
+      {
+        path: '/Decks/',
+        element: <div style={{ color: 'lightblue' }}>New Body</div>,
+      },
+    ],
   },
 ]);
 

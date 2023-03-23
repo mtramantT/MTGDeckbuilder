@@ -47,7 +47,10 @@ const NavBar: React.FC<Props> = (props: Props) => {
         <div>{logo}</div>
         <NavLinks>
           {Array.isArray(items)
-            ? items.map((item) => <NavLink to={`/${item}`}>{item}</NavLink>)
+            ? items.map((item) => {
+                console.log(item);
+                return <NavLink to={`/${item}`}>{item}</NavLink>;
+              })
             : items}
         </NavLinks>
         <Hamburger>
