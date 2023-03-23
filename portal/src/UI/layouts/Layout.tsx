@@ -24,7 +24,7 @@ const Layout: React.FC<Props> = (props: Props) => {
     const { navBar, body } = children;
     return (
       <Wrapper>
-        {navBar && <div className='app-nav'>{navBar}</div>}
+        {navBar && <>{navBar}</>}
         {<div className='app-body'>{body}</div>}
       </Wrapper>
     );
