@@ -1,48 +1,36 @@
-import React, { ReactNode } from 'react';
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
-import { ErrorPage, Nav } from '../UI';
-import Layout from '../UI/Layouts/Layout';
-import NavBar from '../UI/Layouts/NavBar';
+import React from 'react';
+import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router-dom';
+import { isObject } from '../types';
 
 interface Props {
-  children?: ReactNode;
+   children: RouteObject | RouteGroup;
 }
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: (
-      <Layout>
-        {{
-          navBar: (
-            <NavBar>
-              {{
-                logo: <div>Portal-Logo</div>,
-                items: ['Decks', 'Viewer'],
-              }}
-            </NavBar>
-          ),
-          body: (
-            <div>
-              <Outlet />
-            </div>
-          ),
-        }}
-      </Layout>
-    ),
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: '/Decks/',
-        element: <div style={{ color: 'lightblue' }}>New Body</div>,
-      },
-    ],
-  },
-]);
+interface RouteGroup {
+   root: RouteObject;
+   routes: RouteObject | RouteObject[];
+}
 
 const RouterBoundary: React.FC<Props> = (props: Props) => {
-  const {} = props;
-  return <RouterProvider router={router} />;
+   const { children } = props;
+
+   if (isRouteGroup(children)) {
+      const { root, routes } = children;
+      const routerList = [root];
+
+      if (Array.isArray(routes)) {
+         routes.forEach((route) => routerList.push(route));
+      } else {
+         routerList.push(routes);
+      }
+
+      return <RouterProvider router={createBrowserRouter(routerList)} />;
+   }
+
+   return <RouterProvider router={createBrowserRouter([children])} />;
 };
+
+// Helpers
+const isRouteGroup = (val: any): val is RouteGroup => isObject(val) && 'root' in val;
 
 export default RouterBoundary;
