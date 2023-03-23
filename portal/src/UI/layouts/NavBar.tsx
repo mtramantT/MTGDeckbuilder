@@ -44,7 +44,7 @@ const NavBar: React.FC<Props> = (props: Props) => {
   return (
     <>
       <Nav>
-        <div>{logo}</div>
+        <NavLink to='/'>{logo}</NavLink>
         <NavLinks>
           {Array.isArray(items)
             ? items.map((item) => {
