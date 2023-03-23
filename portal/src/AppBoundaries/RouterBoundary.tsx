@@ -11,26 +11,18 @@ interface RouteGroup {
    routes: RouteObject | RouteObject[];
 }
 
-const RouterBoundary: React.FC<Props> = (props: Props) => {
-   const { children } = props;
-
+const RouterBoundary: React.FC<Props> = ({ children }: Props) => {
    if (isRouteGroup(children)) {
       const { root, routes } = children;
-      const routerList = [root];
-
-      if (Array.isArray(routes)) {
-         routes.forEach((route) => routerList.push(route));
-      } else {
-         routerList.push(routes);
-      }
-
-      return <RouterProvider router={createBrowserRouter(routerList)} />;
+      const routesList = Array.isArray(routes) ? routes : [routes];
+      return <RouterProvider router={createBrowserRouter([root, ...routesList])} />;
    }
 
    return <RouterProvider router={createBrowserRouter([children])} />;
 };
 
 // Helpers
-const isRouteGroup = (val: any): val is RouteGroup => isObject(val) && 'root' in val;
+const isRouteGroup = (val: any): val is RouteGroup =>
+   isObject(val) && 'root' in val && 'routes' in val;
 
 export default RouterBoundary;
