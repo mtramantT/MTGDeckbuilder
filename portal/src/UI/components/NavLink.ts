@@ -8,7 +8,7 @@ type Props = {
 const NavLink = styled(Link)<Props>`
   color: ${props => props.theme.colors.font};
   text-decoration: none;
-  margin-left: 16px;
+  margin-right: 16px;
 `;
 
 export default NavLink;

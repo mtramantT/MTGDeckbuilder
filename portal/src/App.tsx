@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { ThemeBoundary } from './AppBoundaries';
 import RouterBoundary from './AppBoundaries/RouterBoundary';
+import CardSearch from './components/CardSearch/CardSearch';
 import { ErrorPage } from './UI';
 import Layout from './UI/Layouts/Layout';
 import NavBar from './UI/Layouts/NavBar';
@@ -35,7 +36,7 @@ function App() {
                children: [
                   {
                      path: '/Decks/',
-                     element: <div style={{ color: 'lightblue' }}>New Body</div>,
+                     element: <CardSearch />,
                   },
                ],
             }}

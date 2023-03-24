@@ -1,3 +1,5 @@
+// TODO - Add ReactNode to children to make it compatible with HTML. The path can be assumed here;
+
 import React from 'react';
 import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router-dom';
 import { isObject } from '../types';
