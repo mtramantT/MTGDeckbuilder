@@ -13,7 +13,7 @@ interface NamedChildSlot {
   body: ReactNode;
 }
 
-const Wrapper = styled(Fragment)``;
+const Wrapper = styled.div``;
 
 const Layout: React.FC<Props> = (props: Props) => {
   const { children } = props;
