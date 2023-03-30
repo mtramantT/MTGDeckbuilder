@@ -38,6 +38,10 @@ function App() {
                      path: '/Decks/',
                      element: <CardSearch />,
                   },
+                  {
+                     path: '/Viewer/',
+                     element: <h1>Hello World</h1>,
+                  },
                ],
             }}
          </RouterBoundary>
