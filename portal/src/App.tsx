@@ -4,8 +4,8 @@ import { ThemeBoundary } from './AppBoundaries';
 import RouterBoundary from './AppBoundaries/RouterBoundary';
 import CardSearch from './components/CardSearch/CardSearch';
 import { ErrorPage } from './UI';
-import Layout from './UI/Layouts/Layout';
-import NavBar from './UI/Layouts/NavBar';
+import Layout from './UI/layouts/Layout';
+import NavBar from './UI/layouts/NavBar';
 
 function App() {
    return (
@@ -36,7 +36,7 @@ function App() {
                children: [
                   {
                      path: '/Decks/',
-                     element: <CardSearch />,
+                     element: <CardSearch>New Deck +</CardSearch>,
                   },
                   {
                      path: '/Viewer/',
