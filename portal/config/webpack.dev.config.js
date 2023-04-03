@@ -37,7 +37,8 @@ const devConfig = merge(commonConfig, {
     proxy: {
       '/api': {
         target: API_URL,
-        changeOrigin: true
+        // changeOrigin: true
+        pathRewrite: { '^/api': '' }
       }
     }
   },

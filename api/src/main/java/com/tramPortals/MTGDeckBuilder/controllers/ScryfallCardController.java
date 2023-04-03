@@ -80,4 +80,14 @@ public class ScryfallCardController {
 		}
 		return null;
 	}
+	
+	@GetMapping("/random")
+	public ResponseCardDTO getRandom() throws UnirestException, JsonMappingException, JsonProcessingException {
+		String endpoint = "/cards/random";
+		HttpResponse<String> response = Unirest.get(BASE_URL + endpoint).asString();
+		if (response.getStatus() == 200) {
+			return objectMapper.readValue(response.getBody(), ResponseCardDTO.class);
+		}
+		return null;
+	}
 }

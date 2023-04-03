@@ -8,6 +8,7 @@ import Layout from './UI/layouts/Layout';
 import NavBar from './UI/layouts/NavBar';
 import Search from './components/Chatbox/Chatbox';
 import Chatbox from './components/Chatbox/Chatbox';
+import CardSlider from './components/CardSlider/CardSlider';
 
 function App() {
    return (
@@ -38,7 +39,7 @@ function App() {
                children: [
                   {
                      path: '/',
-                     element: <Chatbox />,
+                     element: <CardSlider />,
                   },
                   {
                      path: '/Decks/',

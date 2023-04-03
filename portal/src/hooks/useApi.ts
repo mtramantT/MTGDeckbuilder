@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
-import axios, { AxiosRequestConfig, AxiosError  } from 'axios';
+import axios, { AxiosRequestConfig, AxiosError } from 'axios';
 
-export interface ApiConfig extends AxiosRequestConfig {};
+export interface ApiConfig extends AxiosRequestConfig { };
 
 export type ApiResult<T> = {
-    data: T | undefined;
-    error: AxiosError | Error | undefined;
-    loading: boolean;
+  data: T | undefined;
+  error: AxiosError | Error | undefined;
+  loading: boolean;
 }
 
 const useApi = <T>(initialUrl: string, initialConfig?: ApiConfig): ApiResult<T> => {
@@ -27,13 +27,13 @@ const useApi = <T>(initialUrl: string, initialConfig?: ApiConfig): ApiResult<T> 
       try {
         const response = await axios(initialUrl, initialConfig);
         if (isMounted.current) {
-            setData(response.data);
-            setLoading(false);
+          setData(response.data);
+          setLoading(false);
         }
       } catch (err) {
-        if ( isMounted.current && (err instanceof AxiosError || err instanceof Error)) {
-            setError(err);
-            setLoading(false);
+        if (isMounted.current && (err instanceof AxiosError || err instanceof Error)) {
+          setError(err);
+          setLoading(false);
         }
       }
     };

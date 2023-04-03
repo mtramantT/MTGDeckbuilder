@@ -13,7 +13,7 @@ const Chatbox: React.FC<Props> = (props: Props) => {
         <Container>
             <form onSubmit={(e) => {
                 e.preventDefault();
-                console.log('Submitted Text')
+                console.log(value)
             }}>
                 <input placeholder='Start a chat here.' value={value} onChange={(event) => setValue(event.target.value)} />
                 <input type='submit' />
