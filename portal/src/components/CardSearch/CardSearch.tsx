@@ -14,7 +14,7 @@ type BaseProps = Base & {};
 
 const Wrapper = styled.div``;
 
-const Button = styled.button<{ color: string }>`
+const Button = styled.button`
    display: block;
    font-family: Arial, Helvetica, sans-serif;
    font-size: 24px;
@@ -24,19 +24,21 @@ const Button = styled.button<{ color: string }>`
    border-radius: 50px;
    margin-left: auto;
    margin-right: auto;
-   background-color: ${({ color }) => color};
+   background-color: ${COLOR1}
+   &.active{
+      background-color: ${COLOR2};
+   }
 `;
 
 
 const CardSearch: React.FC<BaseProps> = (props: BaseProps) => {
    const { label, children } = props;
-   const [color, setColor] = React.useState(COLOR1);
    const child = label || children;
 
    return (
       <Wrapper>
          Testing the card search
-         <Button color={color} onMouseDown={() => setColor(COLOR2)} onMouseUp={() => setColor(COLOR1)}>{child}</Button>
+         <Button>{child}</Button>
       </Wrapper>
    );
 };

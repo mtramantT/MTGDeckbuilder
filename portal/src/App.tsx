@@ -6,6 +6,8 @@ import CardSearch from './components/CardSearch/CardSearch';
 import { ErrorPage } from './UI';
 import Layout from './UI/layouts/Layout';
 import NavBar from './UI/layouts/NavBar';
+import Search from './components/Chatbox/Chatbox';
+import Chatbox from './components/Chatbox/Chatbox';
 
 function App() {
    return (
@@ -20,7 +22,7 @@ function App() {
                            <NavBar>
                               {{
                                  logo: <div>Portal-Logo</div>,
-                                 items: ['Decks', 'Viewer'],
+                                 items: ['Decks', 'Search', 'Test'],
                               }}
                            </NavBar>
                         ),
@@ -35,11 +37,15 @@ function App() {
                errorElement: <ErrorPage />,
                children: [
                   {
+                     path: '/',
+                     element: <Chatbox />,
+                  },
+                  {
                      path: '/Decks/',
                      element: <CardSearch>New Deck +</CardSearch>,
                   },
                   {
-                     path: '/Viewer/',
+                     path: '/Search/',
                      element: <h1>Hello World</h1>,
                   },
                ],
