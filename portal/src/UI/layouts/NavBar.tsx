@@ -73,7 +73,7 @@ const NavBar: React.FC<Props> = ({ children }: Props) => {
             <NavLinks>
                {Array.isArray(items)
                   ? items.map((item) => {
-                       console.log(item);
+                       //   console.log(item);
                        return <NavLink to={`/${item}`}>{item}</NavLink>;
                     })
                   : items}
@@ -82,7 +82,16 @@ const NavBar: React.FC<Props> = ({ children }: Props) => {
                <FontAwesomeIcon icon={faBars} onClick={() => setIsOpen(!isOpen)} />
             </Hamburger>
          </Nav>
-         <SubNav isOpen={isOpen}>This is the sidebar</SubNav>
+         <SubNav isOpen={isOpen}>
+            <NavLinks style={{ display: 'flex' }}>
+               {Array.isArray(items)
+                  ? items.map((item) => {
+                       //   console.log(item);
+                       return <NavLink to={`/${item}`}>{item}</NavLink>;
+                    })
+                  : items}
+            </NavLinks>
+         </SubNav>
       </div>
    );
 };

@@ -13,25 +13,34 @@ const useApi = <T>(initialUrl: string, initialConfig?: ApiConfig): ApiResult<T> 
   const [data, setData] = useState<T>();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<AxiosError | Error>();
-  const isMounted = useRef(true);
+  // const isMounted = useRef(true);
+
+  // useEffect(() => {
+  //   return () => {
+  //     isMounted.current = false;
+  //   }
+  // }, [])
+
+  // useEffect(() => {
+  //   console.log("Mounting", isMounted)
+  // })
 
   useEffect(() => {
-    return () => {
-      isMounted.current = false;
-    }
-  }, [])
+    console.log("Data from hook", data)
+  },[data])
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
         const response = await axios(initialUrl, initialConfig);
-        if (isMounted.current) {
-          setData(response.data);
+        console.log(await axios(initialUrl, initialConfig))
+        // if (isMounted.current) {
+          setData(await response.data);
           setLoading(false);
-        }
+        // }
       } catch (err) {
-        if (isMounted.current && (err instanceof AxiosError || err instanceof Error)) {
+        if ((err instanceof AxiosError || err instanceof Error)) {
           setError(err);
           setLoading(false);
         }

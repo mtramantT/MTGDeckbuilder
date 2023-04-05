@@ -1,6 +1,8 @@
 import React, { ReactNode } from 'react';
 import styled, { createGlobalStyle, css, ThemeProvider } from 'styled-components';
 import theme from '../theme';
+import '../fonts/Kameron-Regular.ttf';
+import '../fonts/Kameron-bold.ttf';
 
 interface Props {
    children: ReactNode;
@@ -9,13 +11,13 @@ interface Props {
 const GlobalStyleWrapper = createGlobalStyle`
    @font-face {
       font-family: 'Kameron';
-      src: url('./fonts/kameron-regular.ttf') format('truetype');
+      src: url('../fonts/Kameron-Regular.ttf') format('truetype');
       font-weight: 400;
    }
 
    @font-face {
       font-family: 'Kameron';
-      src: url('./fonts/kameron-bold.ttf') format('truetype');
+      src: url('../fonts/Kameron-Bold.ttf') format('truetype');
       font-weight: 700;
    }
   body {

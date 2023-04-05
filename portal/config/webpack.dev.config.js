@@ -6,7 +6,7 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 
 const commonConfig = require("./webpack.config.js");
 
-const API_URL = 'http://localhost:8080/'
+const API_URL = 'localhost:8080/'
 
 const devConfig = merge(commonConfig, {
   mode: "development",
@@ -34,13 +34,16 @@ const devConfig = merge(commonConfig, {
   devServer: {
     port: process.env.PORT || 8888,
     historyApiFallback: true,
-    proxy: {
-      '/api': {
-        target: API_URL,
-        // changeOrigin: true
-        pathRewrite: { '^/api': '' }
-      }
-    }
+    // proxy: {
+    //   '/scryfall/cards/random': {
+    //     target: API_URL,
+    //     changeOrigin: true,
+    //     // pathRewrite: { '^/scryfall': '' },
+    //     onProxyReq: (proxyReq) => {
+    //       console.log('Proxying request to:', API_URL + proxyReq.path);
+    //     },
+    //   }
+    // }
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
